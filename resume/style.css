@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+a:link {
+    color: #0366d6;
+}
+a:visited {
+    color: #0366d6;
+}
+
+html {
+    font-size: 16px;
+}
+
+h1 {
+	font-size: 1.5rem;
+}
+
+h2 {
+	font-size: 1.2rem;
+}
+
+h3 {
+	font-size: 1rem;
+}
+
+.interval {
+    font-size: 0.8em;
+    color: #999;
+}
+
+h1, h2, h3 {
+    margin-top: 16px;
+    margin-bottom: 5px;
+}
+
+p {
+    margin: 5px auto;
+}
+
+ul {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+body {
+    margin: 50px auto;
+    padding: 5px 5px;
+    max-width: 800px;
+    line-height: 1.6;
+    color: #444;
+    padding: 0;
+}
+
+.work-item section {
+    margin-left: 20px;
+}
+
+code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(0, 127, 255, 0.08);
+    font-family: Consolas;
+    border-radius: 3px;
+    border: 1px solid #89abd2;
+}
