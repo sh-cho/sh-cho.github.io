@@ -12,15 +12,15 @@ html {
 }
 
 h1 {
-	font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 h2 {
-	font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 h3 {
-	font-size: 1rem;
+    font-size: 1rem;
 }
 
 .interval {
@@ -59,7 +59,8 @@ code {
     padding: 0.2em 0.4em;
     margin: 0;
     font-size: 85%;
-    background-color: rgba(0, 127, 255, 0.08);
+    /*background-color: rgba(0, 127, 255, 0.08);*/
+    background-color: #ebf5ff;
     font-family: Consolas;
     border-radius: 3px;
     border: 1px solid #89abd2;
