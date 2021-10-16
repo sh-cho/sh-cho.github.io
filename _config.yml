@@ -86,6 +86,8 @@ defaults:
       read_time: true
       comments: true
       related: true
+      toc: true
+      toc_sticky: true
   # _pages
   - scope:
       path: "_pages"
