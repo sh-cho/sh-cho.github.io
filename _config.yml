@@ -101,3 +101,11 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
+
+repository: "sh-cho/sh-cho.github.io"
+comments:
+  provider: "utterances"
+  utterances:
+    repo: "sh-cho/sh-cho.github.io"
+    issue-term: "pathname"
+    theme: "github-light"
