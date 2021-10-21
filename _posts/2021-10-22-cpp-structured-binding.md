@@ -123,7 +123,7 @@ auto [x, dummydummy, z] = f();
 
 (1)번 방식처럼 더미 변수를 만드는 게 최선이겠는데, 이 경우 `-Wunused-variable` warning이 나온다.
 
-그래서 (2) 처럼 `[[maybe_unused]]`를 붙이자니, 더미가 아닌 다른 변수들이 사용되지 않더라도 `unused-variable` 경고가 무시되는 부작용이 생긴다.
+그래서 (2)처럼 `[[maybe_unused]]`를 붙이자니, 더미가 아닌 다른 변수들이 사용되지 않더라도 `unused-variable` 경고가 무시되는 부작용이 생긴다.
 
 결국 `std::ignore`는 `std::tie`밖에 쓸 수 없다. :(
 
