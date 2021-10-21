@@ -9,7 +9,7 @@ Structured bindings는 C++17에 도입된 기능이다. 이걸 한글로 바꾸�
 >
 > -- [Structured binding declaration - cppreference](https://en.cppreference.com/w/cpp/language/structured_binding/)
 
-structured bindings는 오브젝트를 분해해 복수의 변수에 할당할 수 
+structured binding은 여러 변수에 subobject 또는 elements of 
 
 ```javascript
 // in javascript
