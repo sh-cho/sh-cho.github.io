@@ -5,6 +5,7 @@ tags:
   - C++
   - structured bindings
   - C++17
+  - 'std::tuple'
 ---
 ## structured bindings란
 Structured bindings는 C++17에 도입된 기능이다. 이걸 한글로 바꾸면 '구조적 바인딩' 정도가 될 것 같다. 비슷한 말로는 destructuring, unpack, decomposition 등이 있을 것 같다. 나는 언팩이란 단어가 제일 짧아 자주 사용한다.
