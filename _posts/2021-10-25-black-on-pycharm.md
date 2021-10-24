@@ -52,11 +52,11 @@ File -> Settings -> Tools -> External Tools
 
 3. External tools 메뉴로 들어간 뒤
 
-![External Tools]({{site.baseurl}}/posts/images/black-on-pycharm-1.png)
+![External Tools]({{site.baseurl}}/assets/images/posts/black-on-pycharm-1.png)
 
 \+ 기호를 누르고
 
-![Create tool]({{site.baseurl}}/posts/images/black-on-pycharm-2.png)
+![Create tool]({{site.baseurl}}/assets/images/posts/black-on-pycharm-2.png)
 
 tool을 위 사진처럼 설정하고 추가한다
 
@@ -69,7 +69,7 @@ tool을 위 사진처럼 설정하고 추가한다
 
 ### (Option) 파일 저장할 때마다 black 돌리는 법
 
-![File Watchers]({{site.baseurl}}/posts/images/black-on-pycharm-3.png)
+![File Watchers]({{site.baseurl}}/assets/images/posts/black-on-pycharm-3.png)
 
 1. 'File Watchers' 플러그인 설치
 2. `Preferences - Tools - File Watchers`에서 + 버튼 눌러 새 watcher 추가
