@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: PyCharm black 설정 방법
 ---
 파이참에서 파일 저장할 때 자동으로 black이 적용되도록 설정해보자
