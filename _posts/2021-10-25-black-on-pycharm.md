@@ -63,6 +63,18 @@ tool을 위 사진처럼 설정하고 추가한다
 
 ### (Option) 파일 저장할 때마다 black 돌리는 법
 
+1. File Watchers 플러그인 설치
+2. `Preferences - Tools - File Watchers`에서 + 버튼 눌러 새 watcher 추가
+  - Name: Black
+  - File type: Python
+  - Scope: Project Files
+  - Program: (2)에서 확인한 black 설치 경로
+  - Arguments: `$FilePath$`
+  - Output paths to refresh: `$FilePath$`
+  - Working directory: `$ProjectFileDir$`
+  - Advanced Options
+    - "Auto-save edited files to trigger the watcher" 체크 해제
+    - "Trigger the watcher on external changes" 체크 해제
 
 
 ## Reference
