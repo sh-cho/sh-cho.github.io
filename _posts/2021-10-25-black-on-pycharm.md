@@ -67,7 +67,7 @@ tool을 위 사진처럼 설정하고 추가한다
 이제 `Tools - External Tools - Black`을 이용해 현재 열려있는 파일에 black을 돌릴 수 있다. Keymap도 설정 가능하다 (문서 참조)
 
 
-### (Option) 파일 저장할 때마다 black 돌리는 법
+### (Optional) 파일 저장할 때마다 black 돌리는 법
 
 ![File Watchers]({{site.baseurl}}/assets/images/posts/black-on-pycharm-3.png)
 
