@@ -58,9 +58,10 @@ tool을 위 사진처럼 설정하고 추가한다
 - Program: (2)에서 확인한 black 설치 경로
 - Arguments: `"$FilePath$""`
 
+이제 `Tools - External Tools - Black`을 이용해 현재 열려있는 파일에 black을 돌릴 수 있다. Keymap도 설정 가능하다 (문서 참조)
 
 
-### (Option) run Black on every file save
+### (Option) 파일 저장할 때마다 black 돌리는 법
 
 
 
