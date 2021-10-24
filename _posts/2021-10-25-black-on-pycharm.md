@@ -52,7 +52,9 @@ File -> Settings -> Tools -> External Tools
 
 3. External tools 메뉴로 들어간 뒤
 
-![Screen Shot 2021-10-25 at 12.40.02 AM.png]({{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 12.40.02 AM.png)
+![Screen Shot 2021-10-25 at 12.40.02 AM.png]({{site.url}}{{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 12.40.02 AM.png)
+
+
 
 \+ 기호를 누르고
 
