@@ -63,7 +63,9 @@ tool을 위 사진처럼 설정하고 추가한다
 
 ### (Option) 파일 저장할 때마다 black 돌리는 법
 
-1. File Watchers 플러그인 설치
+![Screen Shot 2021-10-25 at 1.18.32 AM.png]({{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 1.18.32 AM.png)
+
+1. 'File Watchers' 플러그인 설치
 2. `Preferences - Tools - File Watchers`에서 + 버튼 눌러 새 watcher 추가
   - Name: Black
   - File type: Python
