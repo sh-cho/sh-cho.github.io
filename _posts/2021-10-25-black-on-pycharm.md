@@ -80,9 +80,9 @@ tool을 위 사진처럼 설정하고 추가한다
   - Arguments: `$FilePath$`
   - Output paths to refresh: `$FilePath$`
   - Working directory: `$ProjectFileDir$`
-  - Advanced Options
-    - "Auto-save edited files to trigger the watcher" 체크 해제
-    - "Trigger the watcher on external changes" 체크 해제
+- Advanced Options
+  - "Auto-save edited files to trigger the watcher" 체크 해제
+  - "Trigger the watcher on external changes" 체크 해제
 
 
 ## Reference
