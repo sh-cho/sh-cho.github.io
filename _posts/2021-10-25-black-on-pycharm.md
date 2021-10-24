@@ -44,7 +44,19 @@ On Windows, Linux, BSD
 File -> Settings -> Tools -> External Tools
 ```
 
-3. External tool 
+3. External tools 메뉴로 들어간 뒤
+
+![Screen Shot 2021-10-25 at 12.40.02 AM.png]({{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 12.40.02 AM.png)
+
+\+ 기호를 누르고
+
+![Screen Shot 2021-10-25 at 12.41.41 AM.png]({{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 12.41.41 AM.png)
+
+tool을 위 사진처럼 설정하고 추가한다
+
+- Name: Black
+- Program: (2)에서 확인한 black 설치 경로
+- Arguments: `"$FilePath$""`
 
 
 
