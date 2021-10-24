@@ -54,8 +54,6 @@ File -> Settings -> Tools -> External Tools
 
 ![Screen Shot 2021-10-25 at 12.40.02 AM.png]({{site.baseurl}}/assets/images/post/Screen Shot 2021-10-25 at 12.40.02 AM.png)
 
-
-
 \+ 기호를 누르고
 
 ![Screen Shot 2021-10-25 at 12.41.41 AM.png]({{site.baseurl}}/assets/images/post/Screen Shot 2021-10-25 at 12.41.41 AM.png)
