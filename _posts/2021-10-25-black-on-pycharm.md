@@ -52,13 +52,13 @@ File -> Settings -> Tools -> External Tools
 
 3. External tools 메뉴로 들어간 뒤
 
-![Screen Shot 2021-10-25 at 12.40.02 AM.png]({{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 12.40.02 AM.png)
+![Screen Shot 2021-10-25 at 12.40.02 AM.png]({{site.baseurl}}/assets/images/post/Screen Shot 2021-10-25 at 12.40.02 AM.png)
 
 
 
 \+ 기호를 누르고
 
-![Screen Shot 2021-10-25 at 12.41.41 AM.png]({{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 12.41.41 AM.png)
+![Screen Shot 2021-10-25 at 12.41.41 AM.png]({{site.baseurl}}/assets/images/post/Screen Shot 2021-10-25 at 12.41.41 AM.png)
 
 tool을 위 사진처럼 설정하고 추가한다
 
@@ -71,7 +71,7 @@ tool을 위 사진처럼 설정하고 추가한다
 
 ### (Option) 파일 저장할 때마다 black 돌리는 법
 
-![Screen Shot 2021-10-25 at 1.18.32 AM.png]({{site.baseurl}}/_posts/Screen Shot 2021-10-25 at 1.18.32 AM.png)
+![Screen Shot 2021-10-25 at 1.18.32 AM.png]({{site.baseurl}}/assets/images/post/Screen Shot 2021-10-25 at 1.18.32 AM.png)
 
 1. 'File Watchers' 플러그인 설치
 2. `Preferences - Tools - File Watchers`에서 + 버튼 눌러 새 watcher 추가
