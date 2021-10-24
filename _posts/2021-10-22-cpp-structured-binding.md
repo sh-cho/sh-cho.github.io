@@ -12,7 +12,7 @@ Structured bindings는 C++17에 도입된 기능이다. 이걸 한글로 바꾸�
 
 > Binds the specified names to subobjects or elements of the initializer.
 >
-> -- [Structured binding declaration - cppreference](https://en.cppreference.com/w/cpp/language/structured_binding/)
+> -- [Structured binding declaration - cppreference](https://en.cppreference.com/w/cpp/language/structured_binding)
 
 structured binding은 여러 변수에 subobject 또는 initializer의 elements를 할당할 수 있게 해주는 기능이다.
 
