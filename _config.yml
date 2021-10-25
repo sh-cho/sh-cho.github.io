@@ -115,3 +115,6 @@ analytics:
   provider               : "google-gtag" 
   google:
     tracking_id          : "G-KQZXZY1Y1S"
+
+# SEO
+google_site_verification: "_QOcIpBviPe5cbBC95ZRXt7XJV3UT_rLmEyXUrQ3nFQ"
