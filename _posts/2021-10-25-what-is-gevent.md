@@ -208,11 +208,75 @@ greenlet은 뭐하는건지 대충 알 것 같다. 그 다음줄의 start()는 �
             hub = get_my_hub(self)
             self._start_event = hub.loop.run_callback(self.switch)
 ```
+gevent 소스를 다시 보자. `greenlet.start()`의 맨 끝 줄을 보면 어쩌구 저쩌구 해서 `hub.loop.run_callback`을 실행시키는 것을 알 수 있다.
 
+여기서 loop는 이벤트 루프(event loop)이다. gevent는 이벤트 루프를 위해 libev를 사용하는데, 역시 C로 작성된 모듈이다.
 
+libev는 `event_handler` 콜백을 등록할 수 있는 API를 제공한다. 또한 이벤트를 감시(watch)할 수 있는 기능을 제공한다. 즉, I/O Multiplexing인데, select, poll, epoll, kqueue, ... 등에서 사용 가능한 방식을 쓴다고 함
+
+> "Hey Loop, **Wait** for a write on this socket and call parse_recv() when that happens."
+
+예를 들면 이벤트루프한테 어떤 소켓이 특정 이벤트가 발생할 때까지 기다리라고 하자. 이걸 구현하려면
+
+```python
+fd = make_nonblocking(socket_fd)
+loop.io_watch(fd, write, callback_fn)
+loop.run()
+
+# in loop..
+while True:
+	# block for I/O
+    # call *pending* io_watchers
+```
+이런식으로 된다. non-blocking 소켓을 만들고, 이벤트 루프에 `io_watch()` 메소드로 콜백을 등록한다.
+
+이벤트 루프 내부는 I/O 대기 -> 대기중인 io_watcher 호출 이렇게 반복될 것이다.
+
+```python
+# in loop (libev)
+while True:
+	# call *all* pre_block_watchers
+    # block for I/O
+    # call *pending* io_watchers
+    # call *all* post_block_watchers
+```
+libev는 루프 내부에 두 단계를 더해서 이벤트 루프를 커스터마이즈 할 수 있는 여지를 제공한다. `pre_block_watchers`와 `post_block_watchers`를 호출하는 두 단계가 추가된 것을 확인할 수 있다.
+
+pre_block_watchers은 다른 event mechanism을 이벤트 루프에 적용할 수 있는 hook을 제공한다
+
+> "Hey Loop, **if there are coroutines ready to run, run them first** and then / wait for a write ... blah blah"
+
+이벤트 메커니즘엔 여러가지가 있겠지만 코루틴을 이런식으로 이벤트 루프랑 연결해 쓸 수 있다.
 
 
 ## Putting It Together
+```python
+import gevent
+from gevent import monkey
+
+monkey.patch_all()
+
+def downloader():
+	pool = []
+    for user in users:
+    	g = gevent.Greenlet(download_photos, user)
+        g.start()
+        pool.append(g)
+    gevent.joinall(pool)
+```
+다시 코드를 보자. 코드에는 `greenlet.switch()`나 `loop.run()`과 같은 내용이 보이지 않는데 어떻게 동작하는 걸까?
+
+이제 gevent가 어떻게 greenlet과 libev를 한데 묶어서 쓰는지 알아보자.
+
+```python
+g = gevent.Greenlet(download_photos, user)
+
+# in src
+class Greenlet(greenlet):
+	def __init__(self, run=None, ...):
+    	greenlet.__init__(self, None, get_hub())
+```
+
 
 
 ## Wrap-up / Q&A
