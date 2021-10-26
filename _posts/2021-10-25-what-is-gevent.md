@@ -275,8 +275,20 @@ g = gevent.Greenlet(download_photos, user)
 class Greenlet(greenlet):
 	def __init__(self, run=None, ...):
     	greenlet.__init__(self, None, get_hub())
-```
 
+# in get_hub()
+g.parent = Hub
+```
+Greenlet 생성자를 보면 `get_hub()`가 있는데, 이 부분이 바로 parent를 허브 greenlet으로 설정하는 부분이다.
+
+```python
+class Hub(greenlet):
+	def __init__(self):
+    	self.loop = ...
+```
+Hub greenlet는 이벤트 루프를 담고 있고 동작을 담당한다. 쓰레드마다 1개의 이벤트 루프 또는 Hub greenlet이 있는 것이다.
+
+(~17:43)
 
 
 ## Wrap-up / Q&A
