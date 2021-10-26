@@ -82,7 +82,7 @@ def downloader():
     for t in pool:
     	t.join()
 ```
-쓰레드는 프로세스에 비해 경량이므로 여러개를 만드는 게 문제가 되지 않지만, 단점은 제대로 개발하기가 힘들다. (아마도 synchronization을 얘기하는 듯)
+쓰레드는 프로세스에 비해 상대적으로 경량이므로 여러개를 만드는 게 문제가 되지 않지만, 단점은 제대로 개발하기가 힘들다. (아마도 synchronization을 얘기하는 듯)
 
 가장 큰 문제는 CPython의 경우 GIL 때문에 한번에 한 쓰레드만 동작한다는 것. 따라서 사실상 멀티쓰레딩이 의미가 없다.
 
@@ -109,7 +109,7 @@ concurrency + scalable 달성 가능
 - cooperatively scheduled: OS does not schedule or preempty them (명시적 yield 필요)
 - lightweight
 
-요약하면 OS(커널)의 유저 영역에서 동작하는 쓰레드이다. Cooperative 하다는 점이 특징인데, OS가 컨트롤하지 않으니 선점도 불가, 컨트롤하려면 명시적 yield가 필요하다.
+요약하면 OS(커널)의 유저 영역에서 동작하는 쓰레드이다. Cooperative(협력적) 라는 점이 특징인데, OS가 컨트롤하지 않으니 선점도 불가, 컨트롤하려면 명시적 yield가 필요하다.
 
 ```python
 import gevent
@@ -129,7 +129,33 @@ def downloader():
 
 
 ## The Building Blocks
-(~08:00)
+gevent는 greenlet + libev로 구성돼있다.
+
+gevent의 소스를 한번 확인해보자.
+
+```python
+g = gevent.Greenlet(download_photos, user)
+```
+앞서 green thread를 만들 때 위와 같이 썼다. 저 Greenlet은 어디서 오는건지 확인해보자
+
+```python
+# src/gevent/greenlet.py
+from greenlet import greenlet
+
+...
+
+class Greenlet(greenlet):
+    """
+    A light-weight cooperatively-scheduled execution unit.
+    """
+    ...
+```
+보면 Greenlet이 greenlet 모듈의 greenlet을 상속받아서 만들어진다. 뭔가 벌써 헷갈리지만 일단은 그냥 '그렇구나' 정도로 넘어가자.
+
+> Greenlet: "A light-weight cooperatively-scheduled execution unit."
+
+Greenlet의 주석을 보면 이게 어떤 역할을 하는건지 명확한데, 경량이면서 
+
 
 
 ## Putting It Together
