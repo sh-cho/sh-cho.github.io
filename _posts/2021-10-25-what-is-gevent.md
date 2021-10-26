@@ -18,10 +18,10 @@ Pycon2016의 위 영상을 보며 요약한 내용.
 
 
 ## Introduction
-- What is asynchronous I/O?
-- What is gevent?
+- 비동기 I/O란 무엇인가? (What is asynchronous I/O?)
+- gevent란 무엇인가? (What is gevent?)
 
-위 내용에 앞서 간단한 예제를 생각해보자.
+한가지 예시를 들어보자
 
 ```python
 def download_photos(user):
@@ -131,6 +131,13 @@ def downloader():
 ## The Building Blocks
 (~08:00)
 
+
 ## Putting It Together
 
+
 ## Wrap-up / Q&A
+
+
+## Reference
+
+
