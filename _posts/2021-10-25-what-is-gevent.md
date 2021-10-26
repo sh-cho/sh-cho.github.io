@@ -129,9 +129,9 @@ def downloader():
 
 
 ## The Building Blocks
-gevent는 greenlet + libev로 구성돼있다.
+gevent는 greenlet + libev로 구성돼있는데, 어떻게 구성되어 있는지 간단히 확인해보자.
 
-gevent의 소스를 한번 확인해보자.
+### Greenlet
 
 ```python
 g = gevent.Greenlet(download_photos, user)
@@ -154,7 +154,61 @@ class Greenlet(greenlet):
 
 > Greenlet: "A light-weight cooperatively-scheduled execution unit."
 
-Greenlet의 주석을 보면 이게 어떤 역할을 하는건지 명확한데, 경량이면서 
+Greenlet의 주석을 보면 이게 어떤 역할을 하는건지 명확한데, 경량이면서 cooperatively(협력적으로) 스케줄되는 실행 단위라고 써 있다.
+
+```python
+from greenlet import greenlet
+
+gr1 = greenlet(print_red)
+gr2 = greenlet(print_blue)
+gr1.switch()
+
+def print_red():
+	print("red")
+    gr2.switch()
+    print("red done")
+
+def print_blue():
+	print("blue")
+    gr1.switch()
+    print("blue done")
+
+# Expected outputs
+#
+# red
+# blue
+# red done
+```
+위처럼 gr1, gr2라는 greenlet을 만들고 `gr1.switch()`를 이용해 1번 greenlet을 실행시켰다.
+
+.switch()는 현재 greenlet을 일시정지하고, 다음 greenlet으로 실행을 넘긴다. 다시 switch로 이전 greenlet이 실행을 넘겨받으면, 함수 즉 서브루틴(subroutine)처럼 맨 처음부터 시작하는 것이 아닌, 일시정지 한 부분부터 실행된다.
+
+이 동작.. 어디서 많이 본 것 같다
+
+-> greenlet == 코루틴(Coroutine) 임을 알 수 있다
+
+원리는 greenlet이 C extension 모듈인데, 내부적으로 C 콜스택 포인터를 조작하는 stack slicing(스택 슬라이싱)을 써서 코루틴별 start 위치로 돌아가 resume할 수 있다고 한다. 이 부분의 구현은 어셈블리로 되어있다 한다. (소스를 보진 않았다)
+
+자 이제 greenlet은 c 확장모듈이며, Gevent 안에 greenlet c 확장을 사용할 수 있게 해주는 껍데기가 들어있다는 것을 알 수 있다.
+
+
+### libev
+```python
+g = gevent.Greenlet(download_photos, user)
+g.start()
+```
+greenlet은 뭐하는건지 대충 알 것 같다. 그 다음줄의 start()는 뭘 하는걸까?
+
+```python
+# src/gevent/greenlet.py
+    def start(self):
+        """Schedule the greenlet to run in this loop iteration"""
+        if self._start_event is None:
+            _call_spawn_callbacks(self)
+            hub = get_my_hub(self)
+            self._start_event = hub.loop.run_callback(self.switch)
+```
+
 
 
 
