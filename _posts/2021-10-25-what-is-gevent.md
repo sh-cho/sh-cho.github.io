@@ -25,7 +25,7 @@ Pycon2016의 위 영상을 보며 요약한 내용.
 
 ```python
 def download_photos(user):
-	conn = get_auth_connection(user)
+    conn = get_auth_connection(user)
     photos = get_photos(conn)
     save_photos(user, photos)
 ```
@@ -33,7 +33,7 @@ def download_photos(user):
 
 ```python
 def downloader():
-	users = get_users()
+    users = get_users()
     for user in users:
     	download_photos(user)  # network I/O
 ```
@@ -52,7 +52,7 @@ def downloader():
 import multiprocessing as mp
 
 def downloader():
-	pool = []
+    pool = []
     for user in users:
     	p = mp.Process(download_photos, user)
         pool.append(p)
@@ -73,7 +73,7 @@ def downloader():
 import threading
 
 def downloader():
-	pool = []
+    pool = []
     for user in users:
     	t = threading.Thread(download_photos, user)
         pool.append(t)
@@ -92,10 +92,10 @@ def downloader():
 import tiwsted
 
 def download_photos():
-	# modify this to add callbacks
+    # modify this to add callbacks
 
 def downloader():
-	# something something loop.run()
+    # something something loop.run()
 ```
 concurrency + scalable 달성 가능
 
@@ -118,7 +118,7 @@ from gevent import monkey
 monkey.patch_all()
 
 def downloader():
-	pool = []
+    pool = []
     for user in users:
     	g = gevent.Greenlet(download_photos, user)
         g.start()
@@ -164,12 +164,12 @@ gr2 = greenlet(print_blue)
 gr1.switch()
 
 def print_red():
-	print("red")
+    print("red")
     gr2.switch()
     print("red done")
 
 def print_blue():
-	print("blue")
+    print("blue")
     gr1.switch()
     print("blue done")
 
@@ -201,12 +201,12 @@ greenlet은 뭐하는건지 대충 알 것 같다. 그 다음줄의 start()는 �
 
 ```python
 # src/gevent/greenlet.py
-    def start(self):
-        """Schedule the greenlet to run in this loop iteration"""
-        if self._start_event is None:
-            _call_spawn_callbacks(self)
-            hub = get_my_hub(self)
-            self._start_event = hub.loop.run_callback(self.switch)
+def start(self):
+    """Schedule the greenlet to run in this loop iteration"""
+    if self._start_event is None:
+        _call_spawn_callbacks(self)
+        hub = get_my_hub(self)
+        self._start_event = hub.loop.run_callback(self.switch)
 ```
 gevent 소스를 다시 보자. `greenlet.start()`의 맨 끝 줄을 보면 어쩌구 저쩌구 해서 `hub.loop.run_callback`을 실행시키는 것을 알 수 있다.
 
@@ -225,7 +225,7 @@ loop.run()
 
 # in loop..
 while True:
-	# block for I/O
+    # block for I/O
     # call *pending* io_watchers
 ```
 이런식으로 된다. non-blocking 소켓을 만들고, 이벤트 루프에 `io_watch()` 메소드로 콜백을 등록한다.
@@ -235,7 +235,7 @@ while True:
 ```python
 # in loop (libev)
 while True:
-	# call *all* pre_block_watchers
+    # call *all* pre_block_watchers
     # block for I/O
     # call *pending* io_watchers
     # call *all* post_block_watchers
@@ -257,7 +257,7 @@ from gevent import monkey
 monkey.patch_all()
 
 def downloader():
-	pool = []
+    pool = []
     for user in users:
     	g = gevent.Greenlet(download_photos, user)
         g.start()
@@ -273,8 +273,8 @@ g = gevent.Greenlet(download_photos, user)
 
 # in src
 class Greenlet(greenlet):
-	def __init__(self, run=None, ...):
-    	greenlet.__init__(self, None, get_hub())
+    def __init__(self, run=None, ...):
+        greenlet.__init__(self, None, get_hub())
 
 # in get_hub()
 g.parent = Hub
@@ -283,8 +283,8 @@ Greenlet 생성자를 보면 `get_hub()`가 있는데, 이 부분이 바로 pare
 
 ```python
 class Hub(greenlet):
-	def __init__(self):
-    	self.loop = ...   # event loop!
+    def __init__(self):
+        self.loop = ...   # event loop!
 ```
 Hub greenlet는 이벤트 루프를 담고 있고 동작을 담당한다. 쓰레드마다 1개의 이벤트 루프 또는 Hub greenlet이 있는 것이다.
 
@@ -297,7 +297,7 @@ self.parent.loop.run_callback(self.switch)
 
 ```python
 for user in users:
-	g = gevent.Greenlet(download_photos, user)
+    g = gevent.Greenlet(download_photos, user)
     g.start()
     pool.append(g)
 gevent.joinall(pool)
