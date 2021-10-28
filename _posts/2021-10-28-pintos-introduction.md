@@ -19,7 +19,9 @@ virtual memory implementation.
 일단 설명에 앞서 자료부터 보자
 - https://web.stanford.edu/class/cs140/projects/pintos/pintos.pdf
 
-Pintos(핀토스)는 2004년 스탠포드 대학에서 만든 교육용 OS이다. 리눅스 커널은 매우 방대해서 초심자가 이걸로 운영체제 공부를 하는 것은 매우매우 어려운데 (커밋만 100만개가 넘었다) 이를 위해 상대적으로 간단한 기능만 있는 Pintos가 개발됐다.
+Pintos(핀토스)는 2004년 스탠포드 대학에서 만든 교육용 OS이다. 리눅스 커널은 매우 방대해서 초심자가 이걸로 운영체제 공부를 하는 것은 매우 어려운데, 커밋만 백만개가 넘었으며 소스코드 라인도 백만줄이 넘고, 80% 이상의 코드가 하드웨어 지원을 위한 디바이스 드라이버 코드로 사실 OS 기초를 공부하는 데는 적합하지 않다.
+
+따라서 OS 공부용으로 상대적으로 간단한 기능만 있는 Pintos가 개발됐다.
 
 x86 아키텍처만 지원하고, 따라서 Bochs, QEMU 등 x86 에뮬레이터를 사용해야 한다.
 
@@ -42,6 +44,3 @@ Introduction에서 말하고 있듯이 pintos는
 - https://web.stanford.edu/class/cs140/projects/
 - https://oslab.kaist.ac.kr/pintosslides/
 - https://bowbowbow.tistory.com/9
-
-
-
