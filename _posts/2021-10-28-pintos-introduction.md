@@ -37,10 +37,51 @@ Introduction에서 말하고 있듯이 pintos는
 
 ### 1. 환경 설정
 
-### 2. 
+(m1 mac + homebrew 기준)
+
+```sh
+$ brew install qemu
+$ sudo ln -s /opt/homebrew/bin/qemu-system-i386 /usr/local/bin/qemu
+```
+qemu 설치 후 symlink를 만들어서 local bin에 넣는다
+
+```
+$ qemu --version
+QEMU emulator version 6.1.0
+Copyright (c) 2003-2021 Fabrice Bellard and the QEMU Project developers
+```
+이런식으로 나오면 완료
+
+### 2. 다운로드
+
+- https://web.stanford.edu/class/cs140/projects/pintos/pintos.tar.gz
+
+다운로드 후 `tar xvf pintos.tar.gz`로 압축 해제
+
+
+## Troubleshooting (on Mac)
+```
+# src/threads/Make.vars
+SIMULATOR == --qemu
+```
+bochs로 되어 있는데 qemu로 수정
+
+
+```sh
+$ make
+...
+cp ../Makefile.build build/Makefile
+cd build && /Library/Developer/CommandLineTools/usr/bin/make all
+../../Make.config:37: *** Compiler (i386-elf-gcc) not found.  Did you set $PATH properly?  Please refer to the Getting Started section in the documentation for details. ***
+/bin/sh: i386-elf-ld: command not found
+...
+```
+make 했을 때 i386-elf-gcc가 없다고 나오면
 
 
 ## References
 - https://web.stanford.edu/class/cs140/projects/
 - https://oslab.kaist.ac.kr/pintosslides/
+- https://www.youtube.com/watch?v=3p2lUXH2fxU
+- https://github.com/maojie/pintos_mac/pull/2/files/312098388750de0b2bfa372a772065940dc70fa2
 - https://bowbowbow.tistory.com/9
