@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: gevent란 무엇인가
 tags:
   - gevent
@@ -284,16 +284,48 @@ Greenlet 생성자를 보면 `get_hub()`가 있는데, 이 부분이 바로 pare
 ```python
 class Hub(greenlet):
 	def __init__(self):
-    	self.loop = ...
+    	self.loop = ...   # event loop!
 ```
 Hub greenlet는 이벤트 루프를 담고 있고 동작을 담당한다. 쓰레드마다 1개의 이벤트 루프 또는 Hub greenlet이 있는 것이다.
 
-(~17:43)
+```python
+g.start()
+...
+self.parent.loop.run_callback(self.switch)
+```
+`g.start()`가 호출되면 greenlet의 switch(start or resume) 함수를 이벤트 루프에 등록하게 되고, `pre_block_watchers`로 등록한다.
+
+```python
+for user in users:
+	g = gevent.Greenlet(download_photos, user)
+    g.start()
+    pool.append(g)
+gevent.joinall(pool)
+```
+이제 이벤트루프와 그린쓰레드의 조합은 알 것 같다. 실제로 gevent가 async I/O를 어떻게 가능하게 할까?
+
+```python
+from gevent import monkey
+monkey.patch_all()
+```
+바로 몽키패칭(monkey patching)인데, 기존 socket을 gevent.socket으로 바꿔친다.
+
+```
+create: fd = make_nonblocking(socket_fd)
+send  : loop.io_watch(fd, write, callback_fn)
+        loop.run()
+```
+소켓을 만들 때 논블락킹 소켓을 만들고, send 등 소켓 함수를 쓸 때 이벤트 루프를 사용하도록 만든다.
 
 
 ## Wrap-up / Q&A
 
+- 병렬성 x (no parallelism)
+- 협력적이지 않은(non-cooperative) 코드가 프로세스 전체를 블락킹 할 수 있다
+  - ex1) C Extension -> 순수 파이썬 라이브러리 사용을 고려
+  - ex2) compute-bound greenlets -> gevent.sleep(0) 또는 greenlet blocking detection
+- 몽키패칭은 import 순서 등 고려할 점이 많고 디버깅이 어렵다
 
-## Reference
+gevent는 위와 같은 한계가 있다.
 
-
+이제 gevent와 greenlet, libev, Hub, monkeypatching 등 내부 구성요소에 대해 어느정도 익숙해졌으리라 믿는다.
