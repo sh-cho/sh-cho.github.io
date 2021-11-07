@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: ncdu 사용법
 tags:
   - ncurses
