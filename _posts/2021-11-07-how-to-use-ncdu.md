@@ -9,7 +9,7 @@ tags:
 ---
 > Ncdu is a disk usage analyzer with an ncurses interface. It is designed to find space hogs on a remote server where you don't have an entire graphical setup available, but it is a useful tool even on regular desktop systems. Ncdu aims to be fast, simple and easy to use, and should be able to run in any minimal POSIX-like environment with ncurses installed.
 
-ncdu(NCurses Disk Usage)는 ncurses 인터페이스를 이용해 구현된 디스크 사용량 분석 프로그램이다. `du`의 ncurses 버전이다.
+[ncdu(NCurses Disk Usage)](https://dev.yorhel.nl/ncdu)는 ncurses 인터페이스를 이용해 구현된 디스크 사용량 분석 프로그램이다. `du`의 ncurses 버전이다.
 
 
 ## Installation
